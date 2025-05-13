@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=4fwFsLcWH_fK&format=png&color=6b63ff" type="image/x-icon">
+    <title>Portfólio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary-color: #6b63ff;
+        --primary-hover: #27218f;
+        --text-color: #ffffff;
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --border-color: #334155;
+        --progress-bg: #334155;
+        --mim-color: #6b63ff;
+      }
+
+      .light {
+        --primary-color: #6b63ff;
+        --primary-hover: #5a52e0;
+        --text-color: #1e293b;
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+        --border-color: #e2e8f0;
+        --progress-bg: #e2e8f0;
+        --mim-color: #6b63ff;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+      }
+
+      .primary-bg {
+        background-color: var(--primary-color);
+      }
+
+      .primary-bg:hover {
+        background-color: var(--primary-hover);
+      }
+
+      .card-bg {
+        background-color: var(--card-bg);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .border-custom {
+        border-color: var(--border-color);
+      }
+
+      .progress-bg {
+        background-color: var(--progress-bg);
+      }
+
+      .mim-color {
+        color: var(--mim-color);
+      }
+
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+      .hover-scale:hover {
+        transform: scale(1.05);
+      }
+
+      .section {
+        padding: 6rem 0;
+      }
+
+      /* Carrossel ajustado */
+      .carousel-container {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 12px;
+      }
+
+      .carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-item {
+        flex: 0 0 100%;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(107, 99, 255, 0.7);
+        color: white;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-button:hover {
+        background-color: rgba(107, 99, 255, 0.9);
+      }
+
+      .carousel-button.prev {
+        left: 20px;
+      }
+
+      .carousel-button.next {
+        right: 20px;
+      }
+
+      .progress-container {
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background-color: var(--primary-color);
+        border-radius: 4px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        transition: border-color 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(107, 99, 255, 0.3);
+      }
+
+      .header {
+        backdrop-filter: blur(10px);
+        background-color: rgba(30, 41, 59, 0.8);
+        transition: all 0.3s ease;
+      }
+
+      .light .header {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .light .header a {
+        color: var(--text-color);
+      }
+
+      .light .header a:hover {
+        color: var(--primary-color);
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #6b63ff, #9b94ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Ícones de habilidades sempre coloridos */
+      .skill-icon {
+        width: 64px;
+        height: 64px;
+      }
+
+      /* Estilos para a logo no footer */
+      .footer-logo {
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+      .footer-logo:hover {
+        transform: scale(1.1);
+      }
+
+      /* Estilos para os botões de tema - SEM SOMBRA */
+      #desktop-theme-toggle,
+      #mobile-menu-theme-toggle {
+        background-color: transparent;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: none !important;
+      }
+
+      #desktop-theme-toggle:hover,
+      #mobile-menu-theme-toggle:hover {
+        color: var(--primary-color);
+      }
+
+      /* Estilos para o menu mobile */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      
+      .mobile-menu.open {
+        max-height: 500px;
+        transition: max-height 0.3s ease-in;
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 4rem 0;
+        }
+        
+        .carousel-item {
+          min-height: 250px;
+        }
+        
+        .skill-icon {
+          width: 48px;
+          height: 48px;
+        }
+
+        /* Ajustes para mobile no footer */
+        .footer-content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        
+        .footer-logo-container {
+          margin-bottom: 1.5rem;
+        }
+        
+        .footer-social {
+          margin-top: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="dark">
+    <!-- ========== HEADER ========== -->
+    <header class="header sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-40 w-full text-sm py-3">
+      <nav class="relative max-w-6xl w-full mx-auto px-4 md:flex md:items-center md:justify-between">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <!-- Logo que muda de cor no light mode -->
+            <img src="https://img.icons8.com/?size=100&id=4fwFsLcWH_fK&format=png&color=FFFFFF" width="36" alt="Logo" class="dark-logo mr-2 transition-all duration-300 hover:scale-110">
+            <img src="https://img.icons8.com/?size=100&id=4fwFsLcWH_fK&format=png&color=000000" width="36" alt="Logo" class="light-logo hidden mr-2 transition-all duration-300 hover:scale-110">
+          </div>
+
+          <div class="md:hidden flex items-center gap-2">
+            <!-- Botão de menu mobile apenas (botão de tema removido do header mobile) -->
+            <button type="button" id="mobile-menu-toggle" class="p-2 rounded-full border border-custom" aria-label="Toggle navigation">
+              <svg class="mobile-menu-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/>
+              </svg>
+              <svg class="mobile-menu-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menu Desktop -->
+        <div class="hidden md:flex md:items-center md:justify-end gap-8">
+          <a class="py-2 font-medium hover:text-primary-color transition-colors" href="#sobre">Sobre</a>
+          <a class="py-2 font-medium hover:text-primary-color transition-colors" href="#projetos">Projetos</a>
+          <a class="py-2 font-medium hover:text-primary-color transition-colors" href="#certificacoes">Certificações</a>
+          
+          <!-- Botão de Toggle Theme Desktop (mantido) -->
+          <button type="button" id="desktop-theme-toggle" class="p-2 rounded-full bg-transparent border border-custom hover-scale">
+            <span class="group inline-flex shrink-0 justify-center items-center size-6">
+              <svg class="shrink-0 size-5 theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Menu Mobile -->
+      <div id="mobile-menu" class="mobile-menu w-full md:hidden">
+        <div class="px-4 pt-2 pb-4">
+          <a class="block py-2 font-medium hover:text-primary-color transition-colors" href="#sobre">Sobre</a>
+          <a class="block py-2 font-medium hover:text-primary-color transition-colors" href="#projetos">Projetos</a>
+          <a class="block py-2 font-medium hover:text-primary-color transition-colors" href="#certificacoes">Certificações</a>
+          
+          <!-- Botão de Toggle Theme Mobile dentro do menu (mantido) -->
+          <button type="button" id="mobile-menu-theme-toggle" class="w-full flex items-center py-2 font-medium hover:text-primary-color transition-colors">
+            <span class="mr-2">Alterar tema</span>
+            <svg class="shrink-0 size-5 theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="section">
+      <div class="max-w-6xl mx-auto px-4 xl:px-0 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div class="md:w-1/2">
+          <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">
+            Olá! Eu sou <span class="gradient-text">Jammily Carla</span>
+          </h1>
+          <h2 class="text-xl md:text-2xl text-primary-color font-medium mb-6">
+            Desenvolvedora Web Full Stack
+          </h2>
+          <p class="text-lg mb-8 text-gray-400 dark:text-gray-300">
+            Apaixonada por tecnologia, ciência de dados e criação de soluções inovadoras.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#contato" class="btn btn-primary hover-scale">
+              <i class="fas fa-envelope mr-2"></i> Entrar em Contato
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <img src="foto minha.jpg" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-primary-color shadow-lg hover-scale">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SOBRE SECTION ========== -->
+    <section id="sobre" class="section bg-gradient-to-b from-card-bg to-bg-color">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          SOBRE <span class="mim-color">MIM</span>
+        </h2>
+        
+        <div class="card-bg rounded-xl p-8 shadow-lg">
+          <p class="text-lg mb-6">
+            Sou uma profissional com experiência em liderança e uma forte capacidade organizacional. Tenho como objetivo garantir a eficiência de todo o processo, mantendo um olhar atento em cada etapa, desde a concepção até a execução.
+          </p>
+          <p class="text-lg mb-8">
+            Minha versatilidade me permite atuar tanto no desenvolvimento front-end quanto back-end, sendo o back-end a área com a qual mais me identifico, e em que busco constante aprimoramento técnico. Minha paixão por análise de dados me impulsiona a entender os diversos processos envolvidos e a explorar a amplitude das informações.
+          </p>
+          
+          <h3 class="text-xl font-semibold mb-4">Minhas Habilidades</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- HTML -->
+            <div class="text-center">
+              <div class="flex justify-center mb-2">
+                <img src="https://img.icons8.com/color/96/000000/html-5.png" class="skill-icon" alt="HTML">
+              </div>
+              <h4 class="font-medium mb-1">HTML5</h4>
+              <div class="progress-container progress-bg rounded-full">
+                <div class="progress-bar" style="width: 90%"></div>
+              </div>
+            </div>
+            
+            <!-- CSS -->
+            <div class="text-center">
+              <div class="flex justify-center mb-2">
+                <img src="https://img.icons8.com/color/96/000000/css3.png" class="skill-icon" alt="CSS">
+              </div>
+              <h4 class="font-medium mb-1">CSS3</h4>
+              <div class="progress-container progress-bg rounded-full">
+                <div class="progress-bar" style="width: 85%"></div>
+              </div>
+            </div>
+            
+            <!-- Python -->
+            <div class="text-center">
+              <div class="flex justify-center mb-2">
+                <img src="https://img.icons8.com/color/96/000000/python.png" class="skill-icon" alt="Python">
+              </div>
+              <h4 class="font-medium mb-1">Python</h4>
+              <div class="progress-container progress-bg rounded-full">
+                <div class="progress-bar" style="width: 75%"></div>
+              </div>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="text-center">
+              <div class="flex justify-center mb-2">
+                <img src="https://img.icons8.com/color/96/000000/javascript.png" class="skill-icon" alt="JavaScript">
+              </div>
+              <h4 class="font-medium mb-1">JavaScript</h4>
+              <div class="progress-container progress-bg rounded-full">
+                <div class="progress-bar" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJETOS SECTION ========== -->
+    <section id="projetos" class="section">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">PROJETOS</h2>
+        
+        <!-- Carrossel ajustado -->
+        <div class="carousel-container mb-8">
+          <div class="carousel">
+            <div class="carousel-item">
+              <img src="gabinete.jpeg" alt="Projeto Gabinete" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-item">
+              <img src="stylesync.jpg" alt="Projeto StyleSync" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-item">
+              <img src="vacinaja.jpg" alt="Projeto VacinaJá" class="w-full h-full object-cover">
+            </div>
+            <div class="carousel-item">
+              <img src="flexiarm.jpg" alt="Projeto FlexiArm" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <button class="carousel-button prev" aria-label="Anterior">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-button next" aria-label="Próximo">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="text-center">
+          <p id="carousel-text" class="text-lg max-w-2xl mx-auto"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CERTIFICAÇÕES SECTION ========== -->
+    <section id="certificacoes" class="section bg-gradient-to-b from-bg-color to-card-bg">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">CERTIFICAÇÕES</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Certificação 1 -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-graduation-cap text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Bradesco - Planejamento de Carreira</h3>
+                <p class="mt-2">Curso sobre autoconhecimento, habilidades e planejamento para o mercado de trabalho.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Certificação 2 -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-clock text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Bradesco - Organização Pessoal</h3>
+                <p class="mt-2">Dicas para melhorar a gestão do tempo e a organização no day-to-day.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Certificação 3 -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fab fa-aws text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">AWS - Academy Cloud Fundations</h3>
+                <p class="mt-2">Introdução aos conceitos de nuvem, produtos AWS, segurança e arquitetura.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Certificação 4 -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-robot text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">ERETEC - MCPF</h3>
+                <p class="mt-2">Participação em competições de robótica e programação durante o ensino técnico.</p>
+              </div>
+            </div>
+          </div>
+           
+          <!-- Certificação 5 - Liderança de Sala -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-users text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Liderança de Sala - MCPF</h3>
+                <p class="mt-2">Desenvolvimento de habilidades como comunicação, responsabilidade e trabalho em equipe.</p>
+              </div>
+            </div>
+          </div>
+           
+          <!-- Certificação 6 - OBLI -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-trophy text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Competição OBLI – Medalha de Bronze</h3>
+                <p class="mt-2">Aprimoramento de habilidades analíticas, resolução de problemas e pensamento crítico por meio da participação na Olimpíada Brasileira de Linguística (OBLI), conquistando medalha de bronze.</p>
+              </div>
+            </div>
+          </div>
+
+        <!--Certificação 7 - Análise de sistemas-->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-diagram-project text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Análise e Projeto de Sistema - MCPF</h3>
+                <p class="mt-2">Desenvolvimento de habilidades em modelagem de software, levantamento de requisitos e arquitetura de sistemas, aplicando metodologias para solução de problemas computacionais.</p>
+              </div>
+            </div>
+          </div>
+
+        <!--Certificação 8 - Monitoria de Laborátorio -->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-chalkboard-user text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Monitoria de Laborátorio - MCPF</h3>
+                <p class="mt-2">Aprimoramento de habilidades em suporte técnico, resolução de problemas e auxílio aos alunos no uso de softwares e equipamentos, promovendo um ambiente de aprendizado colaborativo.</p>
+              </div>
+            </div>
+          </div>
+
+          <!--Certificação 9 - fab. prog-->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-laptop-code text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Fábrica de Programadores - MCPF</h3>
+                <p class="mt-2">Desenvolvimento de habilidades em programação, boas práticas de codificação e trabalho em equipe, por meio da criação de soluções tecnológicas em um ambiente simulado de desenvolvimento de software.</p>
+              </div>
+            </div>
+          </div>
+
+            <!--Certificação 10 - ifmg-->
+          <div class="card-bg p-6 rounded-xl hover-scale transition-all">
+            <div class="flex items-start">
+              <div class="bg-primary-color bg-opacity-10 p-3 rounded-lg mr-4">
+                <i class="fas fa-microscope text-primary-color text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Metodologia científica - IFMG</h3>
+                <p class="mt-2">Aprimoramento das habilidades de pesquisa, análise crítica e produção acadêmica, com foco na construção do conhecimento científico e na aplicação de métodos para elaboração de trabalhos e projetos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTATO SECTION ========== -->
+    <section id="contato" class="section">
+      <div class="max-w-2xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Entre em Contato</h2>
+        
+        <!-- Formulário único -->
+        <div class="card-bg p-8 rounded-xl">
+          <form class="space-y-4">
+            <div>
+              <label for="nome" class="block mb-2 font-medium">Nome</label>
+              <input type="text" id="nome" name="nome" class="form-input" required>
+            </div>
+            
+            <div>
+              <label for="email" class="block mb-2 font-medium">Email</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            
+            <div>
+              <label for="mensagem" class="block mb-2 font-medium">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="4" class="form-input" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-full hover-scale">
+              <i class="fas fa-paper-plane mr-2"></i> Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative overflow-hidden py-12 card-bg">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="footer-content flex flex-col md:flex-row items-center justify-between">
+          <div class="footer-logo-container flex items-center mb-4 md:mb-0">
+            <!-- Logo que muda de cor no light mode com a mesma animação do navbar -->
+            <img src="https://img.icons8.com/?size=100&id=4fwFsLcWH_fK&format=png&color=FFFFFF" width="36" alt="Logo" class="footer-logo dark-logo mr-2 transition-all duration-300 hover:scale-110">
+            <img src="https://img.icons8.com/?size=100&id=4fwFsLcWH_fK&format=png&color=000000" width="36" alt="Logo" class="footer-logo light-logo hidden mr-2 transition-all duration-300 hover:scale-110">
+          </div>
+          
+          <div class="footer-social flex space-x-4">
+            <a href="https://www.linkedin.com/in/jammily-carla-65870b33b/" target="_blank" class="size-10 flex items-center justify-center rounded-full border border-custom hover:bg-primary-color hover:bg-opacity-10 hover:border-primary-color transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            
+            <a href="https://github.com/jammily-ctrl" target="_blank" class="size-10 flex items-center justify-center rounded-full border border-custom hover:bg-primary-color hover:bg-opacity-10 hover:border-primary-color transition-colors">
+              <i class="fab fa-github"></i>
+            </a>
+
+            <a href="https://www.instagram.com/jayq1_q/?utm_source=ig_web_button_share_sheet" target="_blank" class="size-10 flex items-center justify-center rounded-full border border-custom hover:bg-primary-color hover:bg-opacity-10 hover:border-primary-color transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            
+            <a href="mailto:jammilysampaio@gmail.com" class="size-10 flex items-center justify-center rounded-full border border-custom hover:bg-primary-color hover:bg-opacity-10 hover:border-primary-color transition-colors">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="border-t border-custom mt-8 pt-8 text-center text-gray-500 dark:text-gray-400">
+          <p>© 2025 Jammily Carla. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Script do Carrossel
+      const carousel = document.querySelector('.carousel');
+      const prevButton = document.querySelector('.carousel-button.prev');
+      const nextButton = document.querySelector('.carousel-button.next');
+      const carouselText = document.getElementById('carousel-text');
+
+      const descriptions = [
+        "Gabinete: Um gabinete sustentável para computadores, focado em espaço, refrigeração e materiais recicláveis.",
+        "StyleSync: Um sistema de agendamento para barbearias, focado em praticidade e otimização de tempo.",
+        "VacinaJá: Uma plataforma informativa sobre vacinas, focada em acesso e conscientização.",
+        "FlexiArm: Uma garra robótica para automação, com simulação e design 3D eficiente."
+      ];
+
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carousel.style.transform = `translateX(${offset}%)`;
+        carouselText.textContent = descriptions[currentIndex];
+      }
+
+      prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+        } else {
+          currentIndex = descriptions.length - 1;
+        }
+        updateCarousel();
+      });
+
+      nextButton.addEventListener('click', () => {
+        if (currentIndex < descriptions.length - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        updateCarousel();
+      });
+
+      // Inicializa o carrossel
+      updateCarousel();
+
+      // Script do Toggle Theme
+      const desktopThemeToggle = document.getElementById("desktop-theme-toggle");
+      const mobileMenuThemeToggle = document.getElementById("mobile-menu-theme-toggle");
+      const themeIcons = document.querySelectorAll('.theme-icon');
+      const darkLogo = document.querySelectorAll('.dark-logo');
+      const lightLogo = document.querySelectorAll('.light-logo');
+    
+      // Verifica o tema salvo ou preferência do sistema
+      const savedTheme = localStorage.getItem('theme') || 
+                       (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      
+      // Aplica o tema inicial
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("light");
+        themeIcons.forEach(icon => {
+          icon.innerHTML = `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>`;
+        });
+        darkLogo.forEach(logo => logo.classList.add('hidden'));
+        lightLogo.forEach(logo => logo.classList.remove('hidden'));
+      }
+    
+      // Função para alternar tema
+      function toggleTheme() {
+        const isLight = document.documentElement.classList.contains("light");
+        
+        if (isLight) {
+          // Muda para dark mode
+          document.documentElement.classList.remove("light");
+          document.documentElement.classList.add("dark");
+          themeIcons.forEach(icon => {
+            icon.innerHTML = `
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            `;
+          });
+          localStorage.setItem('theme', 'dark');
+          darkLogo.forEach(logo => logo.classList.remove('hidden'));
+          lightLogo.forEach(logo => logo.classList.add('hidden'));
+        } else {
+          // Muda para light mode
+          document.documentElement.classList.remove("dark");
+          document.documentElement.classList.add("light");
+          themeIcons.forEach(icon => {
+            icon.innerHTML = `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>`;
+          });
+          localStorage.setItem('theme', 'light');
+          darkLogo.forEach(logo => logo.classList.add('hidden'));
+          lightLogo.forEach(logo => logo.classList.remove('hidden'));
+        }
+      }
+
+      // Configura os listeners dos botões (apenas os que existem agora)
+      if (desktopThemeToggle) {
+        desktopThemeToggle.addEventListener("click", toggleTheme);
+      }
+      if (mobileMenuThemeToggle) {
+        mobileMenuThemeToggle.addEventListener("click", toggleTheme);
+      }
+
+      // Suave scroll para links internos
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Script do Menu Mobile
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      mobileMenuToggle.addEventListener('click', function() {
+        // Alterna a classe 'open' no menu mobile
+        mobileMenu.classList.toggle('open');
+        
+        // Alterna os ícones do botão
+        this.classList.toggle('mobile-menu-open');
+        
+        // Atualiza o atributo aria-expanded
+        const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+        this.setAttribute('aria-expanded', !expanded);
+      });
+
+      // Fecha o menu quando um link é clicado (mobile)
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 768) {
+            mobileMenu.classList.remove('open');
+            mobileMenuToggle.classList.remove('mobile-menu-open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
